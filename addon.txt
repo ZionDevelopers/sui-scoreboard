@@ -1,0 +1,9 @@
+"AddonInfo"
+{
+	"name"        "Scoreboard"
+	"version"     "1.0"
+	"author_name" "Suicidal Banana"
+	"author_url"  ""
+	"info"        "Scoreboard"
+	"override"    "0"
+}
