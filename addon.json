@@ -1,0 +1,21 @@
+{
+	"title"		:	"SUI Scoreboard V3 for Exsto",
+	"type"		:	"tool",
+	"tags"		:	[ "build", "fun" ],
+	"description":	"SUI Scoreboard V3 is a port for Exto from SUI Scoreboard V2 from Suicidal Banana. Ported by Nexus [BR] for Exsto Admin Addon.",
+	"ignore"	:
+	[
+		"*.svn*",
+		"*.txt",
+		".git*",
+		".project",
+		".gitignore",
+		".buildpath",
+		".settings*",
+		"git-hooks-pre-commit",
+		"gitrid.sh",
+		"LICENSE",
+		"README.md",
+		"logo.jpg"
+	]
+}
