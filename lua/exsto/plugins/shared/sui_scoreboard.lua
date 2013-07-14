@@ -22,6 +22,9 @@ function PLUGIN:Init()
 		resource.AddSingleFile("materials/gui/silkicons/star.vtf")
 		resource.AddSingleFile("materials/gui/silkicons/user.vmt")
 		resource.AddSingleFile("materials/gui/silkicons/user.vtf")	
+		
+		-- For Players to Download this addon from Workshop.
+		resource.AddWorkshop("160121673")
 	
 		AddCSLuaFile()
 		AddCSLuaFile("sui_scoreboard/admin_buttons.lua")
