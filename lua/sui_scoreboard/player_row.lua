@@ -103,7 +103,7 @@ local function timeToString(time)
 	local d = ttime % 7
 	local w = math.floor(ttime / 7)
 	local str = ""
-	str = (w>0 and w.."w" or "")..(d>0 and d.."d" or "")
+	str = (w>0 and w.."w " or "")..(d>0 and d.."d " or "")
 	
 	return string.format( str.."%02ih %02im %02is", h, m, s )
 end	  
