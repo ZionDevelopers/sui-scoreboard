@@ -1,3 +1,3 @@
-SUI Scoreboard V3 for Exsto
+SUI Scoreboard V2.5 for Exsto
 ========================
-SUI Scoreboard V3 for Exsto ported by Nexus
+SUI Scoreboard V2.5 for Exsto ported by Nexus

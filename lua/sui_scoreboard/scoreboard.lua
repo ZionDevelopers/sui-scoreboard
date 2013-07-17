@@ -30,7 +30,7 @@ function PANEL:Init()
 	self.Logog:SetText( "g" )
 
 	self.SuiSc = vgui.Create( "DLabel", self )
-	self.SuiSc:SetText( "SUI Scoreboard V3 for Exsto by Nexus [BR] " )
+	self.SuiSc:SetText( "SUI Scoreboard V2.5 for Exsto by Nexus [BR] " )
 	
 	self.Description = vgui.Create( "DLabel", self )
 	self.Description:SetText( GAMEMODE.Name .. " - " .. GAMEMODE.Author )
