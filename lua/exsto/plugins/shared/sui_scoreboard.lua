@@ -1,12 +1,12 @@
  -- Exsto
- -- SUI Scoreboard V3 for Exsto Plugin 
+ -- SUI Scoreboard V2.5 for Exsto Plugin 
 
 local PLUGIN = exsto.CreatePlugin()
 
 PLUGIN:SetInfo({
-	Name = "SUI Scoreboard V3 for Exsto",
-	ID = "sui_scoreboardv3",
-	Desc = "SUI Scoreboard V3 ported to Exsto!",
+	Name = "SUI Scoreboard V2.5 for Exsto",
+	ID = "sui-scoreboardv2-5",
+	Desc = "SUI Scoreboard V2.5 ported to Exsto!",
 	Owner = "Nexus [BR]"
 })
 
