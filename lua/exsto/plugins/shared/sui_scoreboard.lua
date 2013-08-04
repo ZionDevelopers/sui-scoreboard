@@ -12,7 +12,8 @@ PLUGIN:SetInfo({
 
 function PLUGIN:Init()	
 	if SERVER then	
-		--[[ resource.AddSingleFile("materials/gui/silkicons/exclamation.vmt")
+		--[[ 
+		resource.AddSingleFile("materials/gui/silkicons/exclamation.vmt")
 		resource.AddSingleFile("materials/gui/silkicons/exclamation.vtf")
 		resource.AddSingleFile("materials/gui/silkicons/heart.vmt")
 		resource.AddSingleFile("materials/gui/silkicons/heart.vtf")
@@ -69,8 +70,10 @@ function PLUGIN:Init()
 	function PLUGIN:ScoreboardHide()	
 		GAMEMODE.ShowScoreboard = false
 		gui.EnableScreenClicker( false )
-
-		SuiScoreBoard:SetVisible( false )		
+		
+		if SuiScoreBoard ~= nil then
+			SuiScoreBoard:SetVisible( false )
+		end		
 		return true		
 	end
 end
