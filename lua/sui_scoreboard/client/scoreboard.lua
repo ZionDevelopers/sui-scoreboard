@@ -265,7 +265,7 @@ function PANEL:UpdateScoreboard( force )
 		end
 	
 		for k, v in pairs( self.PlayerRows ) do	
-			if not k:IsValid() and k:Team() ~= TEAM_CONNECTING then		
+			if not k:IsValid() then		
 				v:Remove()
 				self.PlayerRows[ k ] = nil			
 			end	
