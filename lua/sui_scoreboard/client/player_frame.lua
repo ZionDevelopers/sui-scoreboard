@@ -16,28 +16,39 @@ Version 2.6.0 - 05-02-2014 10:30 PM (UTC -03:00)
 
 ]]--
 
-local PLUGIN = exsto.CreatePlugin()
+local PANEL = {}
 
-PLUGIN:SetInfo({
-	Name = "SUI Scoreboard v2.6 for Exsto",
-	ID = "sui-scoreboardv2-6",
-	Desc = "SUI Scoreboard v2.6 ported for Exsto!",
-	Owner = ".Ż. Nexus"
-})
-
-function PLUGIN:Init()	
-  function PLUGIN:ScoreboardShow()	
-    return Scoreboard.Show()
-  end
-  
-  function PLUGIN:ScoreboardHide()
-    return Scoreboard.Hide()
-  end
+--- Init
+function PANEL:Init()
+	self.pnlCanvas 	= vgui.Create( "Panel", self )
+	self.YOffset = 0
 end
 
---- When the player joins the server we need to restore the NetworkedInt's
-function PLUGIN:PlayerInitialSpawn( ply )
-  Scoreboard.PlayerSpawn( ply )
+--- GetCanvas
+function PANEL:GetCanvas()
+
+	return self.pnlCanvas
+
 end
 
-PLUGIN:Register()
+--- OnMouseWheeled
+function PANEL:OnMouseWheeled( dlta )
+
+	local MaxOffset = self.pnlCanvas:GetTall() - self:GetTall()
+	if MaxOffset > 0 then	
+		self.YOffset = math.Clamp( self.YOffset + dlta * -100, 0, MaxOffset )		
+	else		
+		self.YOffset = 0	
+	end
+	
+	self:InvalidateLayout()	
+end
+
+--- PerformLayout
+
+function PANEL:PerformLayout()
+	self.pnlCanvas:SetPos( 0, self.YOffset * -1 )
+	self.pnlCanvas:SetSize( self:GetWide(), self.pnlCanvas:GetTall() )
+end
+
+vgui.Register( "suiplayerframe", PANEL, "Panel" )
