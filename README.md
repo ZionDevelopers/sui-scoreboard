@@ -12,6 +12,7 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 * Have mute button for every player, click on the Volume Icon to mute / unmute the player.
 * Compatible with Garry's Mod 13.
 * Fixed the Admin buttons like: Kick, permaban and ban.
+* Lots of bugs fixed and lots of improvements since SUI Scoreboard v2.
 
 ### Workshop Ready!
 
@@ -22,7 +23,7 @@ SUI Scoreboard v2.6 is now available via the Steam Workshop! Go to [its Workshop
 Simply clone this repository into your `addons` folder:
 
     cd "%programfiles(x86)%/Steam/SteamApps/common/GarrysMod/garrysmod/addons"
-    git clone https://github.com/wiremod/wire.git wire
+    git clone https://github.com/nexbr/sui-scoreboard.git sui-scoreboard
 
 #### License
 
