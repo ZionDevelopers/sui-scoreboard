@@ -110,8 +110,6 @@ function PANEL:CheckRating( name, count )
 	return count
 end
 
-  
-
 --- UpdatePlayerData
 function PANEL:UpdatePlayerData()
 	if not self.Player:IsValid() then 
@@ -201,8 +199,10 @@ function PANEL:Init()
 	self.lblPing = vgui.Create( "DLabel", self )
 	self.lblMute = vgui.Create( "DImageButton", self)
 	self.imgAvatar = vgui.Create("AvatarImage", self)
-	self.imgAvatar:SetCursor( "hand" )
-	self.imgAvatar.DoClick = function  () self.Player:ShowProfile() end
+	self.lblAvatarFix = vgui.Create( "DLabel", self )
+	self.lblAvatarFix:SetText("")
+	self.lblAvatarFix:SetCursor( "hand" )
+	self.lblAvatarFix.DoClick = function  () self.Player:ShowProfile() end
 	
 	-- If you don't do this it'll block your clicks
 	self.lblName:SetMouseInputEnabled( false )
@@ -215,6 +215,7 @@ function PANEL:Init()
 	self.lblPing:SetMouseInputEnabled( false )
 	self.imgAvatar:SetMouseInputEnabled( false )
 	self.lblMute:SetMouseInputEnabled( true )
+	self.lblAvatarFix:SetMouseInputEnabled( true )
 end
 
 --- ApplySchemeSettings
@@ -227,6 +228,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblDeaths:SetFont( "suiscoreboardplayername"  )
 	self.lblRatio:SetFont( "suiscoreboardplayername"  )
 	self.lblPing:SetFont( "suiscoreboardplayername"  )
+	self.lblAvatarFix:SetFont( "suiscoreboardplayername"  ) 
 	
 	local namecolor = Color(0,0,0,255)
 	
@@ -238,6 +240,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblDeaths:SetColor( namecolor )
 	self.lblRatio:SetColor( namecolor )
 	self.lblPing:SetColor( namecolor)
+	self.lblAvatarFix:SetColor( namecolor)
 	
 	self.lblName:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblTeam:SetFGColor( Color( 0, 0, 0, 255 ) )
@@ -247,6 +250,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblDeaths:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblRatio:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblPing:SetFGColor( Color( 0, 0, 0, 255 ) )
+	self.lblAvatarFix:SetFGColor( Color( 0, 0, 0, 0 ) )
 end
 
 --- DoClick
@@ -297,6 +301,8 @@ function PANEL:PerformLayout()
 	
 	self.imgAvatar:SetPos( 21, 4 ) 
  	self.imgAvatar:SetSize( 32, 32 )
+ 	self.lblAvatarFix:SetPos( 21, 4 ) 
+ 	self.lblAvatarFix:SetSize( 32, 32 )
 
 	local COLUMN_SIZE = 45
 	
