@@ -20,7 +20,7 @@ local PLUGIN = exsto.CreatePlugin()
 
 PLUGIN:SetInfo({
 	Name = "SUI Scoreboard v2.6 for Exsto",
-	ID = "sui-scoreboardv2-6",
+	ID = "sui-scoreboard-v2-6",
 	Desc = "SUI Scoreboard v2.6 ported for Exsto!",
 	Owner = ".Ż. Nexus"
 })

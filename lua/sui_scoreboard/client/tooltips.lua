@@ -20,7 +20,6 @@ surface.CreateFont( "gmodtooltip", {font="Verdana", size=14, weight=500, antiali
 
 --- DrawTooltip
 local function DrawTooltip( )
-
 	if not vgui.CursorVisible() then return end
 
 	local tab = GAMEMODE.ToolTipData or {}

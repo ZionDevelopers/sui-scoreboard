@@ -17,7 +17,6 @@ Version 2.6.0 - 05-02-2014 10:30 PM (UTC -03:00)
 ]]--
 
 --- Make the table if it doesn't exist
-
 if not sql.TableExists("sui_ratings") then
 	sql.Query( "CREATE TABLE IF NOT EXISTS sui_ratings ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, target INTEGER, rater INTEGER, rating INTEGER );" )
 	sql.Query( "CREATE INDEX IDX_RATINGS_TARGET ON sui_ratings ( target DESC )" )
@@ -53,7 +52,6 @@ local function GetRatingName( id )
 	return false
 end
 
-
 --- Update the player's networkvars based on the DB
 -- @param entity ply
 -- @return boolean
@@ -75,7 +73,6 @@ end
 -- @param array arguments
 -- @return boolean
 local function CCRateUser( player, command, arguments )
-
 	local Rater 	= player
 	local Target 	= Entity( tonumber( arguments[1] ) )
 	local Rating	= arguments[2]

@@ -26,9 +26,7 @@ end
 
 --- GetCanvas
 function PANEL:GetCanvas()
-
-	return self.pnlCanvas
-
+  return self.pnlCanvas
 end
 
 --- OnMouseWheeled

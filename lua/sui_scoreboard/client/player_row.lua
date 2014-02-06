@@ -326,7 +326,6 @@ end
 
 --- HigherOrLower
 function PANEL:HigherOrLower( row )
-
 	if self.Player:Team() == TEAM_CONNECTING then 
 		return false
 	end

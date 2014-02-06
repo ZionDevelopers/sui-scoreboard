@@ -22,7 +22,7 @@ Scoreboard = {}
 if SERVER then
   -- For Players to Download this addon from Workshop.
   resource.AddWorkshop("160121673")
-  -- Send required files to server
+  -- Send required files to client
   AddCSLuaFile()
   AddCSLuaFile("sui_scoreboard/client/scoreboard.lua")
   AddCSLuaFile("sui_scoreboard/client/admin_buttons.lua")
