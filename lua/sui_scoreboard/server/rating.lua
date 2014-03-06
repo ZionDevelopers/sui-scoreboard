@@ -116,7 +116,7 @@ local function CCRateUser( player, command, arguments )
 	sql.Query( "INSERT INTO sui_ratings ( target, rater, rating ) VALUES ( "..TargetID..", "..RaterID..", "..RatingID.." )" )
 
 	-- We changed something so update the networked vars
-	UpdatePlayerRatings( Target )	
+	Scoreboard.UpdatePlayerRatings ( Target )	
 end
 
 concommand.Add( "sui_rateuser", CCRateUser )
