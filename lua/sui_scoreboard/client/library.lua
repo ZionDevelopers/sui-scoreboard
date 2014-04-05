@@ -58,7 +58,7 @@ Scoreboard.getXGUITeamName = function (check_group)
       end
     end
   end
-  return "<None>"
+  return check_group
 end
 
 -- Get player's Team Name
