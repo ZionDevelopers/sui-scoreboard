@@ -18,7 +18,7 @@ Version 2.6.1 - 15-05-2014 09:27 PM (UTC -03:00)
 
 local PLUGIN = {}
 PLUGIN.Title = "SUI Scoreboard v2.6 for Evolve"
-PLUGIN.Description = "Give access to SUI Scoreboard v2.6 ported for Evolve!"
+PLUGIN.Description = "SUI Scoreboard v2.6 ported for Evolve!"
 PLUGIN.Author = ".Ż. Nexus ▪ bzg®"
 PLUGIN.Privileges = {  }
 
