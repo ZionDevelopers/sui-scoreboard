@@ -1,8 +1,8 @@
 --[[
 
-SUI Scoreboard v2.6 by .Ż. Nexus ▪ bzg® is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+SUI Scoreboard v2.6 by .Z. Nexus is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 ----------------------------------------------------------------------------------------------------------------------------
-Copyright (c) 2014 .Ż. Nexus ▪ bzg® <http://www.nexusbr.net> <http://steamcommunity.com/profiles/76561197983103320>
+Copyright (c) 2014 .Z. Nexus <http://www.nexusbr.net> <http://steamcommunity.com/profiles/76561197983103320>
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US.
@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6.1 - 15-05-2014 10:00 PM (UTC -03:00)
+Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 
 ]]--
 
@@ -47,7 +47,7 @@ function PANEL:Init()
 	self.Logog:SetText( "g" )
 
 	self.SuiSc = vgui.Create( "DLabel", self )
-	self.SuiSc:SetText( "SUI Scoreboard v2.6 by .Ż. Nexus ▪ bzg®" )
+	self.SuiSc:SetText( "SUI Scoreboard v2.6 by .Z. Nexus" )
 	self.SuiSc:SetCursor( "hand" )
 	self.SuiSc.DoClick = function  () gui.OpenURL("http://steamcommunity.com/profiles/76561197983103320") end
 	self.SuiSc:SetMouseInputEnabled( true )
@@ -119,32 +119,26 @@ function PANEL:Paint(w,h)
 	surface.SetDrawColor( 255, 255, 255, 50 )
 	surface.DrawTexturedRect( 108, self.Description.y - 4, self:GetWide() - 128, self.Description:GetTall() + 8 ) 
 	
-	-- Logo!
-	if ColorCmp( team.GetColor(21), Color( 255, 255, 100, 255 ) ) then
-		tColor = Color( 255, 155, 0, 255 )
-	else
-  		tColor = team.GetColor(21) 		
- 	end
+  -- Logo!
+  if Scoreboard.playerColor.r < 255 then
+    tColorGradientR = Scoreboard.playerColor.r + 15
+  else 
+    tColorGradientR = Scoreboard.playerColor.r
+  end
+
+  if Scoreboard.playerColor.g < 255 then
+    tColorGradientG = Scoreboard.playerColor.g + 15
+  else 
+    tColorGradientG = Scoreboard.playerColor.g
+  end
+
+  if Scoreboard.playerColor.b < 255 then
+    tColorGradientB = Scoreboard.playerColor.b + 15
+  else 
+    tColorGradientB = Scoreboard.playerColor.b
+  end
 	
-	if tColor.r < 255 then
-		tColorGradientR = tColor.r + 15
-	else 
-		tColorGradientR = tColor.r
-	end
-	
-	if tColor.g < 255 then
-		tColorGradientG = tColor.g + 15
-	else 
-		tColorGradientG = tColor.g
-	end
-	
-	if tColor.b < 255 then
-		tColorGradientB = tColor.b + 15
-	else 
-		tColorGradientB = tColor.b
-	end
-	
-	draw.RoundedBox( 8, 24, 12, 80, 80, Color( tColor.r, tColor.g, tColor.b, 200 ) )
+	draw.RoundedBox( 8, 24, 12, 80, 80, Color( Scoreboard.playerColor.r, Scoreboard.playerColor.g, Scoreboard.playerColor.b, 200 ) )
 	surface.SetTexture( texGradient )
 	surface.SetDrawColor( tColorGradientR, tColorGradientG, tColorGradientB, 225 )
 	surface.DrawTexturedRect( 24, 12, 80, 80 ) 
@@ -159,12 +153,12 @@ function PANEL:PerformLayout()
 	self.Hostname:SizeToContents()
 	self.Hostname:SetPos( 115, 17 )
 	
-	self.Logog:SetSize( 80, 80 )
-	self.Logog:SetPos( 45, 5 )
-	self.Logog:SetColor( Color(30, 30, 30, 255) )
+  self.Logog:SetSize( 80, 80 )
+  self.Logog:SetPos( 45, 5 )
+  self.Logog:SetColor( Color(30, 30, 30, 255) )
 
-	self.SuiSc:SetSize( 200, 15 )
-	self.SuiSc:SetPos( (self:GetWide() - 200), (self:GetTall() - 15) )	
+  self.SuiSc:SetSize( 200, 15 )
+  self.SuiSc:SetPos( (self:GetWide() - 200), (self:GetTall() - 15) )  
 	
 	self.Description:SizeToContents()
 	self.Description:SetPos( 115, 60 )
@@ -219,17 +213,16 @@ function PANEL:ApplySchemeSettings()
 	self.Logog:SetFont( "suiscoreboardlogotext" )
 	self.SuiSc:SetFont( "suiscoreboardsuisctext" )
 	
-	if ColorCmp( team.GetColor(21), Color( 255, 255, 100, 255 )) then
-		tColor = Color( 255, 155, 0, 255 )
-	else
-  		tColor = team.GetColor(21) 		
- 	end 
+  if evolve == nil then
+    tColor = team.GetColor(LocalPlayer():Team())      
+  else
+    tColor = evolve.ranks[ LocalPlayer():EV_GetRank() ].Color
+  end
 	
 	self.Hostname:SetFGColor( Color( tColor.r, tColor.g, tColor.b, 255 ) )
 	self.Description:SetFGColor( Color( 55, 55, 55, 255 ) )
 
-  local	tcolor = team.GetColor(LocalPlayer():Team())
-	self.Logog:SetFGColor( Color(tcolor.r,tcolor.g,tcolor.b,225)   )
+	self.Logog:SetFGColor( Color(tColor.r,tColor.g,tColor.b,225)   )
 	self.SuiSc:SetFGColor( Color( 200, 200, 200, 200 ) )
 	
 	self.lblPing:SetFont( "DefaultSmall" )

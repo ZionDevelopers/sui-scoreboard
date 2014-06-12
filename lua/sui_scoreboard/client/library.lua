@@ -1,8 +1,8 @@
 --[[
 
-SUI Scoreboard v2.6 by .Ż. Nexus ▪ bzg® is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+SUI Scoreboard v2.6 by .Z. Nexus is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 ----------------------------------------------------------------------------------------------------------------------------
-Copyright (c) 2014 .Ż. Nexus ▪ bzg® <http://www.nexusbr.net> <http://steamcommunity.com/profiles/76561197983103320>
+Copyright (c) 2014 .Z. Nexus <http://www.nexusbr.net> <http://steamcommunity.com/profiles/76561197983103320>
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US.
@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6.1 - 15-05-2014 10:00 PM (UTC -03:00)
+Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 
 ]]--
 
@@ -24,7 +24,7 @@ Scoreboard.kick = function (ply)
     elseif ulx ~= nil then
       LocalPlayer():ConCommand( "ulx kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )
     elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "evolve kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )  
+      LocalPlayer():ConCommand( "ev kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )  
     end
   end
 end
@@ -37,7 +37,7 @@ Scoreboard.pBan = function(ply)
     elseif ulx ~= nil then
      LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" ) 
     elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "evolve ban \"".. ply:Nick().. "\" 0 \"Kicked By Administrator\"" )  
+      LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 0 \"Kicked By Administrator\"" )  
     end
   end
 end
@@ -50,7 +50,7 @@ Scoreboard.ban = function(ply)
     elseif ulx ~= nil then
       LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )    
     elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "evolve ban \"".. ply:Nick().. "\" 60 \"Kicked By Administrator\"" )  
+      LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 60 \"Kicked By Administrator\"" )  
     end
   end
 end
@@ -74,7 +74,7 @@ Scoreboard.getGroup = function (ply)
   elseif ulx ~= nil then
     return Scoreboard.getXGUITeamName(ply:GetUserGroup())
   elseif evolve ~= nil then
-    return ply:GetUserGroup()   
+    return evolve.ranks[ ply:EV_GetRank() ].Title
   end  
 end
 
@@ -139,8 +139,15 @@ Scoreboard.getPlayerTime = function (ply)
   if ulx ~= nil and ply:GetNWInt( "TotalUTime", -1 ) ~= -1 then
     -- Get player's played time
     return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
+  elseif evolve ~= nil then
+    return evolve:Time() - ply:GetNWInt( "EV_JoinTime" ) + ply:GetNWInt( "EV_PlayTime" )
   else
     -- Get Time
     return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
   end
+end
+
+-- Get Local Player Color
+Scoreboard.netGetPlayerColor = function(ply)
+  Scoreboard.playerColor = net.ReadTable()
 end
