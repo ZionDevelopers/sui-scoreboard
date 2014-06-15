@@ -1,5 +1,5 @@
-SUI Scoreboard v2.6
-========================
+![ScreenShot](https://raw.githubusercontent.com/ZionDevelopers/sui-scoreboard/master/logo.jpg)
+
 SUI Scoreboard V2.6 is a [Garry's Mod][] addon which is based on the original SUI Scoreboard v2 developed by suicidal.banana.
 
 ### Setup
@@ -8,7 +8,7 @@ Just download this addon by clicking on Download ZIP and extract the addon in ``
 
 ### Features
 
-* Works with Exsto and ULX v3
+* Works with Exsto, Evolve and ULX v3
 * Have mute button for every player, click on the Volume Icon to mute / unmute the player.
 * Compatible with Garry's Mod 13.
 * Fixed the Admin buttons like: Kick, permaban and ban.
