@@ -23,7 +23,7 @@ SUI Scoreboard v2.6 is now available via the Steam Workshop! Go to [its Workshop
 Simply clone this repository into your `addons` folder:
 
     cd "%programfiles(x86)%/Steam/SteamApps/common/GarrysMod/garrysmod/addons"
-    git clone https://github.com/nexbr/sui-scoreboard.git sui-scoreboard
+    git clone https://github.com/ZionDevelopers/sui-scoreboard.git sui-scoreboard
 
 #### License
 
