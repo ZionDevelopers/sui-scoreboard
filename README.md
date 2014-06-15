@@ -1,4 +1,4 @@
-![ScreenShot](https://raw.githubusercontent.com/ZionDevelopers/sui-scoreboard/master/logo.jpg)
+[![ScreenShot](https://raw.githubusercontent.com/ZionDevelopers/sui-scoreboard/master/logo.jpg)][workshop]
 
 SUI Scoreboard V2.6 is a [Garry's Mod][] addon which is based on the original SUI Scoreboard v2 developed by suicidal.banana.
 
