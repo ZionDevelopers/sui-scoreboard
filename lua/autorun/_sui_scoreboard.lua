@@ -37,7 +37,7 @@ if SERVER then
   AddCSLuaFile("sui_scoreboard/client/scoreboard.lua")
   AddCSLuaFile("sui_scoreboard/client/vote_button.lua")
   AddCSLuaFile("sui_scoreboard/client/library.lua")
-  AddCSLuaFile("sui_scoreboard/client/netClient.lua")
+  AddCSLuaFile("sui_scoreboard/client/net_client.lua")
   include( "sui_scoreboard/server/rating.lua" )
   include( "sui_scoreboard/server/library.lua" )
 else
@@ -45,5 +45,5 @@ else
   Scoreboard.playerColor = Color(255, 155, 0, 255)
   include( "sui_scoreboard/client/library.lua" )
   include( "sui_scoreboard/client/scoreboard.lua" )
-  include( "sui_scoreboard/client/netClient.lua" )
+  include( "sui_scoreboard/client/net_client.lua" )
 end
