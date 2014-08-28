@@ -57,7 +57,7 @@ end
 
 -- Get XGUI Team Name by group
 Scoreboard.getXGUITeamName = function (check_group)
-  for _, team in ipairs( xgui.data.teams ) do
+  for _, team in ipairs( ulx.teams ) do
     for _, group in ipairs( team.groups ) do
       if group == check_group then
         return team.name
