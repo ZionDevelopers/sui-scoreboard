@@ -56,6 +56,10 @@ end
 -- @param entity ply
 -- @return boolean
 Scoreboard.UpdatePlayerRatings = function( ply )
+	if not IsValid( ply ) then
+		return false
+	end
+	
 	local result = sql.Query( "SELECT rating, count(*) as cnt FROM sui_ratings WHERE target = "..ply:UniqueID().." GROUP BY rating " )
 	
 	if not result then
@@ -76,6 +80,10 @@ local function CCRateUser( player, command, arguments )
 	local Rater 	= player
 	local Target 	= Entity( tonumber( arguments[1] ) )
 	local Rating	= arguments[2]
+	
+	if (not IsValid( Rater )) or (not IsValid( Target )) then
+		return false
+	end
 	
 	-- Don't rate non players
 	if not Target:IsPlayer() then 
