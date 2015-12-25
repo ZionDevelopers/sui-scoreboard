@@ -149,6 +149,8 @@ Scoreboard.getPlayerTime = function (ply)
     return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
   elseif evolve ~= nil then
     return evolve:Time() - ply:GetNWInt( "EV_JoinTime" ) + ply:GetNWInt( "EV_PlayTime" )
+  elseif maestro_promote then
+    return CurTime() - ply:GetNWInt("maestro-promote", CurTime())
   else
     -- Get Time
     return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
