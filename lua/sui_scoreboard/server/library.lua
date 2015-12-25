@@ -17,10 +17,12 @@ Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 ]]--
 
 Scoreboard.SendColor = function (ply)
-  if evolve == nil then
-    tColor = team.GetColor( ply:Team())      
-  else
+  if evolve then
     tColor = evolve.ranks[ ply:EV_GetRank() ].Color
+  elseif maestro then
+    tColor = maestro.rankcolor(maestro.userrank(ply)) or team.GetColor(ply:Team())
+  else
+    tColor = team.GetColor( ply:Team())   
   end
   
   net.Start("SUIScoreboardPlayerColor")
