@@ -54,31 +54,34 @@ function PANEL:Paint(w,h)
 		color = Color( 125, 125, 125, 255 )
 	end
 	
-	if self.Player:IsValid() then
-		if self.Player:Team() == TEAM_CONNECTING then
+	ply = self.Player;
+	
+	if ply:IsValid() then
+		if ply:Team() == TEAM_CONNECTING then
 			color = Color( 100, 100, 100, 155 )
-		elseif self.Player:IsValid() then
-			if self.Player:Team() == TEAM_UNASSIGNED then
+		elseif ply:IsValid() then
+			if ply:Team() == TEAM_UNASSIGNED then
 				color = Color( 100, 100, 100, 255 )
 			else	
 			  if evolve == nil then
-				  tcolor = team.GetColor(self.Player:Team())
+				  tcolor = team.GetColor(ply:Team())
 				  color = Color(tcolor.r,tcolor.g,tcolor.b,225)				
 				else
-				 tcolor = evolve.ranks[ ply:EV_GetRank() ].Color
+				 tcolor = evolve.ranks[ ply:EV_GetRank() ].Color		 
+				 
 				 color = Color(tcolor.r,tcolor.g,tcolor.b,225)
 				end
 			end
-		elseif self.Player:IsAdmin() then
+		elseif ply:IsAdmin() then
 			color = Color( 255, 155, 0, 255 )
 		end
 		
-		if self.Player == LocalPlayer() then		
+		if ply == LocalPlayer() then		
         if evolve == nil then
-          tcolor = team.GetColor(self.Player:Team())
+          tcolor = team.GetColor(ply:Team())
           color = Color(tcolor.r,tcolor.g,tcolor.b,225)       
         else
-         tcolor = evolve.ranks[ self.Player:EV_GetRank() ].Color
+         tcolor = evolve.ranks[ ply:EV_GetRank() ].Color
          color = Color(tcolor.r,tcolor.g,tcolor.b,225)
         end
 		end	
