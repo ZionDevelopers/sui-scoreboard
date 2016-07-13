@@ -16,6 +16,8 @@
 		"gitrid.sh",
 		"LICENSE.md",
 		"README.md",
-		"logo.jpg"
+		"logo.jpg",
+		"*.exe",
+		"*.bat"
 	]
 }
