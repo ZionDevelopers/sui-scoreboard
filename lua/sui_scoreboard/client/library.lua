@@ -25,6 +25,8 @@ Scoreboard.kick = function (ply)
       LocalPlayer():ConCommand( "ulx kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )
     elseif evolve ~= nil then
       LocalPlayer():ConCommand( "ev kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )  
+    elseif maestro ~= nil then
+      LocalPlayer():ConCommand( "ms kick \"$" .. ply:SteamID() .. "\" \"Kicked By Administrator\"" )
     end
   end
 end
@@ -38,6 +40,8 @@ Scoreboard.pBan = function(ply)
      LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" ) 
     elseif evolve ~= nil then
       LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 0 \"Kicked By Administrator\"" )  
+    elseif maestro ~= nil then
+      LocalPlayer():ConCommand( "ms ban \"$" .. ply:SteamID() .. "\" 0 \"Banned permanently by Administrator\"" )
     end
   end
 end
@@ -51,6 +55,8 @@ Scoreboard.ban = function(ply)
       LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )    
     elseif evolve ~= nil then
       LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 60 \"Kicked By Administrator\"" )  
+    elseif maestro ~= nil then
+      LocalPlayer():ConCommand( "ms ban \"$" .. ply:SteamID() .. "\" 1h \"Banned permanently by Administrator\"" )
     end
   end
 end
@@ -75,6 +81,8 @@ Scoreboard.getGroup = function (ply)
     return Scoreboard.getXGUITeamName(ply:GetUserGroup())
   elseif evolve ~= nil then
     return evolve.ranks[ ply:EV_GetRank() ].Title
+  elseif maestro ~= nil then
+    return maestro.userrank(ply)
   end  
 end
 
@@ -141,6 +149,8 @@ Scoreboard.getPlayerTime = function (ply)
     return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
   elseif evolve ~= nil then
     return evolve:Time() - ply:GetNWInt( "EV_JoinTime" ) + ply:GetNWInt( "EV_PlayTime" )
+  elseif maestro_promote then
+    return CurTime() - ply:GetNWInt("maestro-promote", CurTime())
   else
     -- Get Time
     return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))

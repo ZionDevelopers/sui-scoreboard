@@ -16,22 +16,10 @@ Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 
 ]]--
 
-Scoreboard.SendColor = function (ply)
-  if evolve then
-    tColor = evolve.ranks[ ply:EV_GetRank() ].Color
-  elseif maestro then
-    tColor = maestro.rankcolor(maestro.userrank(ply)) or team.GetColor(ply:Team())
-  else
-    tColor = team.GetColor( ply:Team())   
-  end
-  
-  net.Start("SUIScoreboardPlayerColor")
-  net.WriteTable(tColor)
-  net.Send(ply)
-end
-
---- When the player joins the server we need to restore the NetworkedInt's
-Scoreboard.PlayerSpawn = function ( ply )
-  timer.Simple( 5, function() Scoreboard.UpdatePlayerRatings( ply ) end) -- Wait a few seconds so we avoid timeouts.
-  Scoreboard.SendColor(ply)
+if SERVER then
+  AddCSLuaFile()
+  hook.Add("PlayerInitialSpawn", "SUISCOREBOARD-Spawn", Scoreboard.PlayerSpawn)
+elseif CLIENT then
+  hook.Add("ScoreboardShow","SUISCOREBOARD-Show", Scoreboard.Show)
+  hook.Add("ScoreboardHide", "SUISCOREBOARD-Hide", Scoreboard.Hide)
 end
