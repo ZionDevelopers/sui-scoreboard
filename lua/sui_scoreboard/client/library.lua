@@ -27,6 +27,8 @@ Scoreboard.kick = function (ply)
       LocalPlayer():ConCommand( "ev kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )  
     elseif maestro ~= nil then
       LocalPlayer():ConCommand( "ms kick \"$" .. ply:SteamID() .. "\" \"Kicked By Administrator\"" )
+    elseif Mercury~=nil then 
+      LocalPlayer():ConCommand( "hg kick \"" .. ply:SteamID() .. "\" \"Kicked By Administrator\"" )
     end
   end
 end
@@ -42,6 +44,8 @@ Scoreboard.pBan = function(ply)
       LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 0 \"Kicked By Administrator\"" )  
     elseif maestro ~= nil then
       LocalPlayer():ConCommand( "ms ban \"$" .. ply:SteamID() .. "\" 0 \"Banned permanently by Administrator\"" )
+    elseif Mercury~=nil then 
+      LocalPlayer():ConCommand( "hg ban \"" .. ply:SteamID() .. "\" 0 \"Quick ban via scoreboard\"" )
     end
   end
 end
@@ -83,6 +87,8 @@ Scoreboard.getGroup = function (ply)
     return evolve.ranks[ ply:EV_GetRank() ].Title
   elseif maestro ~= nil then
     return maestro.userrank(ply)
+  elseif Mercury ~= nil then
+    return team.GetName(ply:Team())
   end  
 end
 
@@ -151,6 +157,8 @@ Scoreboard.getPlayerTime = function (ply)
     return evolve:Time() - ply:GetNWInt( "EV_JoinTime" ) + ply:GetNWInt( "EV_PlayTime" )
   elseif maestro_promote then
     return CurTime() - ply:GetNWInt("maestro-promote", CurTime())
+  elseif Mercury~=nil then
+    return ply:GetNWInt("ranktime", 0)
   else
     -- Get Time
     return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
