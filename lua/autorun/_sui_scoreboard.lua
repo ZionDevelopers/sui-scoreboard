@@ -34,6 +34,7 @@ if SERVER then
   AddCSLuaFile("sui_scoreboard/client/player_frame.lua")
   AddCSLuaFile("sui_scoreboard/client/player_infocard.lua")
   AddCSLuaFile("sui_scoreboard/client/player_row.lua")
+  AddCSLuaFile("sui_scoreboard/client/connecting_player_row.lua")
   AddCSLuaFile("sui_scoreboard/client/scoreboard.lua")
   AddCSLuaFile("sui_scoreboard/client/vote_button.lua")
   AddCSLuaFile("sui_scoreboard/client/library.lua")

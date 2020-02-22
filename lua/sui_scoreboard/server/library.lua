@@ -16,6 +16,8 @@ Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 
 ]]--
 
+util.AddNetworkString( "SUIScoreboardPlayerConnecting" )
+
 Scoreboard.SendColor = function (ply)
   if evolve then
     tColor = evolve.ranks[ ply:EV_GetRank() ].Color
@@ -35,3 +37,20 @@ Scoreboard.PlayerSpawn = function ( ply )
   timer.Simple( 5, function() Scoreboard.UpdatePlayerRatings( ply ) end) -- Wait a few seconds so we avoid timeouts.
   Scoreboard.SendColor(ply)
 end
+
+gameevent.Listen( "player_connect" )
+hook.Add( "player_connect", "suiscoreboardPlayerConnected", function( data )
+	local name = data.name			// Same as Player:Nick()
+	local steamid = data.networkid	// Same as Player:SteamID()
+	local ip = data.address			// Same as Player:IPAddress()
+	local id = data.userid			// Same as Player:UserID()
+	local bot = data.bot			// Same as Player:IsBot()
+	local index = data.index		// Same as Player:EntIndex()
+
+	net.Start("SUIScoreboardPlayerConnecting")
+	net.WriteInt(id, 32)
+	net.WriteString(name)
+	net.WriteString(steamid)
+	net.WriteString(util.SteamIDTo64(steamid))
+	net.Broadcast()
+end )

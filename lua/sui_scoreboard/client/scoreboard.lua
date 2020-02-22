@@ -17,6 +17,7 @@ Version 2.6.2 - 12-06-2014 05:33 PM(UTC -03:00)
 ]]--
 
 include( "player_row.lua" )
+include( "connecting_player_row.lua" )
 include( "player_frame.lua" )
 
 surface.CreateFont( "suiscoreboardheader"  , { font = "coolvetica", size = 28, weight = 100, antialiasing = true})
@@ -39,7 +40,7 @@ local PANEL = {}
 
 --- Init
 function PANEL:Init()
-  Scoreboard.vgui = self
+	Scoreboard.vgui = self
 	self.Hostname = vgui.Create( "DLabel", self )
 	self.Hostname:SetText( GetHostName() )
 
@@ -86,13 +87,51 @@ function PANEL:Init()
 	self.lblTeam:SetText( "Rank" )
 	
 	self.lblMute = vgui.Create( "DImageButton", self)
+	
+	self.connectingPlayers = {}
+	
+	net.Receive("SUIScoreboardPlayerConnecting", function()
+		local id = net.ReadInt(32)
+		local name = net.ReadString()
+		local steamid = net.ReadString()
+		local steamid64 = net.ReadString()
+		
+		self.connectingPlayers[id] = {name, steamid, steamid64}
+		--print("player " .. name .. " connected, adding to list. List now has " .. #self.connectingPlayers .. " stuff")
+	end )
+	
+	gameevent.Listen( "player_disconnect" )
+	hook.Add( "player_disconnect", "suiscoreboardPlayerDisconnect", function( data )
+		local name = data.name			// Same as Player:Nick()
+		local steamid = data.networkid		// Same as Player:SteamID()
+		local id = data.userid			// Same as Player:UserID()
+		local bot = data.bot			// Same as Player:IsBot()
+		local reason = data.reason		// Text reason for disconnected such as "Kicked by console!", "Timed out!", etc...
+
+		self.connectingPlayers[id] = nil
+		--print("player " .. name .. " disconnected, removing from list. List now has " .. #self.connectingPlayers .. " stuff")
+	end )
+
+	gameevent.Listen( "player_spawn" )
+	hook.Add( "player_spawn", "suiscoreboardPlayerSpawn", function( data ) 
+		local id = data.userid	// Same as Player:UserID()
+
+		self.connectingPlayers[id] = nil
+		--print("player " .. id .. " spawned, adding to list. List now has " .. #self.connectingPlayers .. " stuff")
+	end )
 end
 
 --- AddPlayerRow
 function PANEL:AddPlayerRow( ply )
-	local button = vgui.Create( "suiscoreplayerrow", self.PlayerFrame:GetCanvas() )
-	button:SetPlayer( ply )
-	self.PlayerRows[ ply ] = button
+	if(type(ply) == "table") then
+		local button = vgui.Create( "suiscoreconnectingplayerrow", self.PlayerFrame:GetCanvas() )
+		button:SetPlayer( ply[1], ply[2], ply[3] )
+		self.PlayerRows[ ply[1] ] = button
+	else
+		local button = vgui.Create( "suiscoreplayerrow", self.PlayerFrame:GetCanvas() )
+		button:SetPlayer( ply )
+		self.PlayerRows[ ply ] = button
+	end
 end
 
 --- GetPlayerRow
@@ -257,17 +296,23 @@ function PANEL:UpdateScoreboard( force )
 			return false
 		end
 	
-		for k, v in pairs( self.PlayerRows ) do	
-			if not k:IsValid() then		
+		for k, v in pairs( self.PlayerRows ) do
+			if type(k) == "string" then
+				v:Remove()
+				self.PlayerRows[ k ] = nil			
+			elseif not k:IsValid() then		
 				v:Remove()
 				self.PlayerRows[ k ] = nil			
 			end	
 		end
 		
 		local PlayerList = player.GetAll()	
-		for id, pl in pairs( PlayerList ) do		
+		PlayerList = table.Add(PlayerList, self.connectingPlayers)
+		--print("all connecting players:")
+		--PrintTable(connectingPlayers)
+		for id, pl in pairs( PlayerList ) do
 			if not self:GetPlayerRow( pl ) then		
-				self:AddPlayerRow( pl )		
+				self:AddPlayerRow( pl )
 			end		
 		end
 		
