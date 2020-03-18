@@ -20,6 +20,7 @@ local PANEL = {}
 
 PANEL.VoteName = "none"
 PANEL.MaterialName = "icon16/exclamation.png"
+PANEL.IsPNG = true
 
 --- Init
 function PANEL:Init()
@@ -61,11 +62,12 @@ function PANEL:SetUp( mat, votename, nicename, ispng )
 	self.MaterialName 	= mat
 	self.VoteName 		= votename
 	self.NiceName		= nicename
+	self.IsPNG			= ispng or false
+
 	self:SetToolTip( self.NiceName )
-	self.ispng = ispng or false
 
 	if not self.Material then
-		self.Material = self.ispng
+		self.Material = self.IsPNG
 			and Material( "icon16/" .. self.MaterialName .. ".png" )
 			or surface.GetTextureID( "gui/" .. self.MaterialName )
 	end
@@ -88,7 +90,7 @@ function PANEL:Paint(w,h)
 		alpha = 255
 	end
 
-	if self.ispng then
+	if self.IsPNG then
 		surface.SetMaterial( self.Material )
 	else
 		surface.SetTexture( self.Material )
