@@ -102,7 +102,7 @@ function PANEL:Init()
 	
 	gameevent.Listen( "player_disconnect" )
 	hook.Add( "player_disconnect", "suiscoreboardPlayerDisconnect", function( data )
-		local name = data.name			// Same as Player:Nick()
+		local name = data.name			-- Same as Player:Nick()
 		local steamid = data.networkid		// Same as Player:SteamID()
 		local id = data.userid			// Same as Player:UserID()
 		local bot = data.bot			// Same as Player:IsBot()
