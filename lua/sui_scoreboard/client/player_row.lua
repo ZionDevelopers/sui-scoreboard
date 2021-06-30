@@ -152,7 +152,7 @@ function PANEL:UpdatePlayerData()
 	
 	-- Show the super awesome port of the vanilla gmod volume slider when right click
 	self.lblMute.DoRightClick = function()
-		if IsValid(ply) and ply != LocalPlayer() then
+		if IsValid(ply) and ply ~= LocalPlayer() then
 			self:ShowMicVolumeSlider()
 		end
 	end
@@ -203,7 +203,7 @@ function PANEL:UpdatePlayerData()
 	count = self:CheckRating( 'naughty', count )
 end
 
---phys' super awesome port of the vanilla gmod volume slider
+--phys' super awesome port of the vanilla gmod volume slider... redecorated a little to match SUI theme
 function PANEL:GetPlayer() return self.Player end
 function PANEL:ShowMicVolumeSlider()
    local width = 300
@@ -217,8 +217,7 @@ function PANEL:ShowMicVolumeSlider()
    local y = math.min(gui.MouseY(), ScrH() - height)
 
    local currentPlayerVolume = self:GetPlayer():GetVoiceVolumeScale()
-   currentPlayerVolume = currentPlayerVolume != nil and currentPlayerVolume or 1
-
+   currentPlayerVolume = currentPlayerVolume ~= nil and currentPlayerVolume or 1
 
    -- Frame for the slider
    local frame = vgui.Create("DFrame")
@@ -230,7 +229,7 @@ function PANEL:ShowMicVolumeSlider()
    frame:SetDraggable(false)
    frame:SetSizable(false)
    frame.Paint = function(self, w, h)
-      draw.RoundedBox(5, 0, 0, w, h, Color(24, 25, 28, 255))
+      draw.RoundedBox(5, 0, 0, w, h, Color(30, 30, 30, 205))
    end
 
    -- Automatically close after 10 seconds (something may have gone wrong)
@@ -266,10 +265,10 @@ function PANEL:ShowMicVolumeSlider()
       local volumePercent = slider:GetSlideX()
 
       -- Filled in box
-      draw.RoundedBox(5, 0, sliderDisplayHeight / 2, w * volumePercent, sliderDisplayHeight, Color(200, 46, 46, 255))
+      draw.RoundedBox(5, 0, sliderDisplayHeight / 2, w * volumePercent, sliderDisplayHeight, Color(208, 208, 208, 255))
 
       -- Grey box
-      draw.RoundedBox(5, w * volumePercent, sliderDisplayHeight / 2, w * (1 - volumePercent), sliderDisplayHeight, Color(79, 84, 92, 255))
+      draw.RoundedBox(5, w * volumePercent, sliderDisplayHeight / 2, w * (1 - volumePercent), sliderDisplayHeight, Color(84, 84, 84, 255))
    end
 
    -- Render slider "knob" & text
@@ -285,7 +284,7 @@ function PANEL:ShowMicVolumeSlider()
             -25, -- Y
             sliderHeight * 2 + textPadding * 2, -- Width
             sliderHeight + textPadding * 2, -- Height
-            Color(52, 54, 57, 255)
+            Color(55, 55, 55, 208)
          )
          draw.DrawText(textValue, "DermaDefaultBold", sliderHeight / 2, -20, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER)
       end
