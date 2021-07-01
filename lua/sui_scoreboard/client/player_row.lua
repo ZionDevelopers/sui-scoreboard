@@ -129,6 +129,14 @@ function PANEL:UpdatePlayerData()
 		end
 
 		self.lblMute.DoClick = function() self.Player:SetMuted( not self.Muted ) end
+	end	
+	
+	-- Show the super awesome port of the vanilla gmod volume slider when right click
+	self.lblMute.DoRightClick = function()
+		if IsValid(ply) and ply ~= LocalPlayer() then
+			self:ShowMicVolumeSlider()
+		end
+
 	end
 
     local k = self.Player:Frags()
@@ -172,6 +180,97 @@ function PANEL:UpdatePlayerData()
 	count = self:CheckRating( 'informative', count )
 	count = self:CheckRating( 'naughty', count )
 end
+
+--phys' super awesome port of the vanilla gmod volume slider... redecorated a little to match SUI theme
+function PANEL:GetPlayer() return self.Player end
+function PANEL:ShowMicVolumeSlider()
+   local width = 300
+   local height = 50
+   local padding = 10
+
+   local sliderHeight = 16
+   local sliderDisplayHeight = 8
+
+   local x = math.max(gui.MouseX() - width, 0)
+   local y = math.min(gui.MouseY(), ScrH() - height)
+
+   local currentPlayerVolume = self:GetPlayer():GetVoiceVolumeScale()
+   currentPlayerVolume = currentPlayerVolume ~= nil and currentPlayerVolume or 1
+
+   -- Frame for the slider
+   local frame = vgui.Create("DFrame")
+   frame:SetPos(x, y)
+   frame:SetSize(width, height)
+   frame:MakePopup()
+   frame:SetTitle("")
+   frame:ShowCloseButton(false)
+   frame:SetDraggable(false)
+   frame:SetSizable(false)
+   frame.Paint = function(self, w, h)
+      draw.RoundedBox(5, 0, 0, w, h, Color(30, 30, 30, 205))
+   end
+
+   -- Automatically close after 10 seconds (something may have gone wrong)
+   timer.Simple(10, function() if IsValid(frame) then frame:Close() end end)
+
+   -- "Player volume"
+   local label = vgui.Create("DLabel", frame)
+   label:SetPos(padding, padding)
+   label:SetFont("DermaDefaultBold")
+   label:SetSize(width - padding * 2, 20)
+   label:SetColor(Color(255, 255, 255, 255))
+   label:SetText("Player Volume:")
+
+   -- Slider
+   local slider = vgui.Create("DSlider", frame)
+   slider:SetHeight(sliderHeight)
+   slider:Dock(TOP)
+   slider:DockMargin(padding, 0, padding, 0)
+   slider:SetSlideX(currentPlayerVolume)
+   slider:SetLockY(0.5)
+   slider.TranslateValues = function(slider, x, y)
+      if IsValid(self:GetPlayer()) then self:GetPlayer():SetVoiceVolumeScale(x) end
+      return x, y
+   end
+
+   -- Close the slider panel once the player has selected a volume
+   slider.OnMouseReleased = function(panel, mcode) frame:Close() end
+   slider.Knob.OnMouseReleased = function(panel, mcode) frame:Close() end
+
+   -- Slider rendering
+   -- Render slider bar
+   slider.Paint = function(self, w, h)
+      local volumePercent = slider:GetSlideX()
+
+      -- Filled in box
+      draw.RoundedBox(5, 0, sliderDisplayHeight / 2, w * volumePercent, sliderDisplayHeight, Color(208, 208, 208, 255))
+
+      -- Grey box
+      draw.RoundedBox(5, w * volumePercent, sliderDisplayHeight / 2, w * (1 - volumePercent), sliderDisplayHeight, Color(84, 84, 84, 255))
+   end
+
+   -- Render slider "knob" & text
+   slider.Knob.Paint = function(self, w, h)
+      if slider:IsEditing() then
+         local textValue = math.Round(slider:GetSlideX() * 100) .. "%"
+         local textPadding = 5
+
+         -- The position of the text and size of rounded box are not relative to the text size. May cause problems if font size changes
+         draw.RoundedBox(
+            5, -- Radius
+            -sliderHeight * 0.5 - textPadding, -- X
+            -25, -- Y
+            sliderHeight * 2 + textPadding * 2, -- Width
+            sliderHeight + textPadding * 2, -- Height
+            Color(55, 55, 55, 208)
+         )
+         draw.DrawText(textValue, "DermaDefaultBold", sliderHeight / 2, -20, Color(255, 255, 255, 255), TEXT_ALIGN_CENTER)
+      end
+
+      draw.RoundedBox(100, 0, 0, sliderHeight, sliderHeight, Color(255, 255, 255, 255))
+   end
+end
+
 
 --- Int
 function PANEL:Init()
