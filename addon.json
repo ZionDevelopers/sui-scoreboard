@@ -2,7 +2,7 @@
 	"title"		:	"SUI Scoreboard v2.6",
 	"type"		:	"tool",
 	"tags"		:	[ "build", "fun" ],
-	"description":	"SUI Scoreboard v2.6 is a port for Exsto/ULX from SUI Scoreboard v2 from Suicidal Banana. Ported by .Z. Nexus.",
+	"description":	"SUI Scoreboard v2.6 is a port for Exsto/ULX from SUI Scoreboard v2 from Suicidal Banana. Ported by .Z. Dathus [BR].",
 	"ignore"	:
 	[
 		"*.svn*",
@@ -18,6 +18,8 @@
 		"README.md",
 		"logo.jpg",
 		"*.exe",
-		"*.bat"
+		"*.bat",
+		"COPYING",
+		"LICENSE"
 	]
 }
