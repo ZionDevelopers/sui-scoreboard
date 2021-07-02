@@ -7,6 +7,7 @@ This is a game addon for [Garry's Mod][] servers, NOT FOR SINGLEPLAYER!
 
 * Works with Exsto, Evolve and ULX v3
 * Have mute button for every player, click on the volume icon to mute / unmute the player.
+* Change the volume of specific players by right-clicking their volume icons.
 * Compatible with Garry's Mod 13.
 * Fixed the admin buttons like: Kick, permaban and ban.
 * Lots of bugs fixed and lots of improvements since SUI Scoreboard v2.

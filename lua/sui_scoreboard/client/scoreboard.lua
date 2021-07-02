@@ -81,7 +81,7 @@ function PANEL:Init()
 	self.lblHealth:SetText( "Health" )
 
 	self.lblHours = vgui.Create( "DLabel", self )
-	self.lblHours:SetText( "Time Connected" )
+	self.lblHours:SetText( "Total Time Connected" )
 	
 	self.lblTeam = vgui.Create( "DLabel", self )
 	self.lblTeam:SetText( "Rank" )
