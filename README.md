@@ -12,6 +12,9 @@ This is a game addon for [Garry's Mod][] servers, NOT FOR SINGLEPLAYER!
 * Fixed the admin buttons like: Kick, permaban and ban.
 * Lots of bugs fixed and lots of improvements since SUI Scoreboard v2.
 
+### Compatibility
+[uTime][uTime] is required if you use ULX and want to keep the hour tracking after restart.
+
 ### Setup
 
 Just download this addon by clicking on Download ZIP and extract the addon in ````Steam\SteamApps\common\GarrysMod\garrysmod\addons\```` as usual.
@@ -36,3 +39,4 @@ To view a copy of this license, visit [Common Creative's Website][License].
 [workshop]: <http://steamcommunity.com/sharedfiles/filedetails/?id=160121673>
 [Exsto]: <https://github.com/prefanatic/exsto>
 [License]: <https://creativecommons.org/licenses/by-nc-sa/4.0/>
+[uTime]: <https://github.com/TeamUlysses/utime>
