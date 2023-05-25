@@ -133,9 +133,9 @@ function PANEL:UpdatePlayerData()
 	
 	-- Show the super awesome port of the vanilla gmod volume slider when right click
 	self.lblMute.DoRightClick = function()
-		if IsValid(ply) and ply ~= LocalPlayer() then
+		--if IsValid(ply) and ply ~= LocalPlayer() then --player is always valid
 			self:ShowMicVolumeSlider()
-		end
+		--end
 
 	end
 
