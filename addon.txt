@@ -1,9 +1,9 @@
 "AddonInfo"
 {
-	"name"        "SUI Scoreboard v2.6"
-	"version"     "2.6"
-	"author_name" "Ż. Nexus"
-	"author_url"  "http://www.nexusbr.net"
-	"info"        "This is a Scoreboard based on SUI Scoreboard v2 developed by suicidal.banana, was modified, fixed, improved and ported to Garry's Mod 13, to work with ULX v3 and Exsto"
+	"name"        "SUI Scoreboard v2.6.4"
+	"version"     "2.6.4"
+	"author_name" "Dathus [BR]"
+	"author_url"  "http://www.juliocesar.me"
+	"info"        "This is a Scoreboard based on SUI Scoreboard v2 developed by suicidal.banana, was modified, fixed, improved and ported to Garry's Mod 13, to work with ULX v3, Exsto, Maestro and Mercury."
 	"override"    "0"
 }
