@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	"name"        "SUI Scoreboard v2.6.4"
+	"name"        "SUI Scoreboard"
 	"version"     "2.6.4"
 	"author_name" "Dathus [BR]"
 	"author_url"  "http://www.juliocesar.me"
