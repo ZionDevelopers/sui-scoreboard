@@ -17,6 +17,8 @@
 		"LICENSE.md",
 		"README.md",
 		"logo.jpg",
+		"logo.fw.png",
+		"logo.png",
 		"*.exe",
 		"*.bat",
 		"COPYING",
