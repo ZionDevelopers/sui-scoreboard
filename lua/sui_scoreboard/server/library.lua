@@ -35,7 +35,7 @@ end
 --- When the player joins the server we need to restore the NetworkedInt's
 Scoreboard.PlayerSpawn = function ( ply )
   timer.Simple( 5, function() Scoreboard.UpdatePlayerRatings( ply ) end) -- Wait a few seconds so we avoid timeouts.
-  Scoreboard.SendColor(ply)
+  timer.Simple( 5, function() Scoreboard.SendColor(ply) end)
 end
 
 gameevent.Listen( "player_connect" )
