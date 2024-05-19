@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2023-06-06 8:00 PM(UTC -03:00)
+Version 2.6 - 2024-05-19 11:25 AM (UTC -03:00)
 
 ]]--
 
@@ -399,7 +399,7 @@ function PANEL:PerformLayout()
 	self.lblFrags:SetPos( self:GetWide() - COLUMN_SIZE * 5.4, 0 )
 	self.lblHealth:SetPos( self:GetWide() - COLUMN_SIZE * 6.4, 0 )
 	self.lblHours:SetPos( self:GetWide() - COLUMN_SIZE * 10.3, 0 )
-	self.lblTeam:SetPos( self:GetWide() - COLUMN_SIZE * 13.2, 3 )
+	self.lblTeam:SetPos( self:GetWide() - COLUMN_SIZE * 16.1, 3 )
 
 	if self.Open or self.Size ~= self.TargetSize then
 		self.infoCard:SetVisible( true )

@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"name"        "SUI Scoreboard"
-	"version"     "2.6.7"
+	"version"     "2.6.8"
 	"up_date"	  "2024-05-19"
 	"author_name" "Dathus [BR]"
 	"author_url"  "http://www.juliocesar.me"
