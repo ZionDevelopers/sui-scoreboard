@@ -14,7 +14,7 @@ This is a game addon for [Garry's Mod][] servers, NOT FOR SINGLEPLAYER!
 
 ### Compatibility
 [uTime][uTime] is required if you use ULX and want to keep the hour tracking after restart.
-
+[Evolve][Evolve]: To work with Evolve, You need to delete the file garrysmod/addons/evolve/lua/ev_plugins/sh_scoreboard.lua !
 ### Setup
 
 Just download this addon by clicking on Download ZIP and extract the addon in ````Steam\SteamApps\common\GarrysMod\garrysmod\addons\```` as usual.
