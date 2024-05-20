@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2023-06-05 8:00 PM(UTC -03:00)
+Version 2.7 - 2023-06-05 8:00 PM(UTC -03:00)
 
 ]]--
 
@@ -22,7 +22,7 @@ PLUGIN:SetInfo({
 	Name = "SUI Scoreboard v2.6 for Exsto",
 	ID = "sui-scoreboard-v2-6",
 	Desc = "SUI Scoreboard v2.6 ported for Exsto!",
-	Owner = ".Z. Nexus"
+	Owner = "Dathus [BR]"
 })
 
 function PLUGIN:Init()	
@@ -38,6 +38,48 @@ end
 --- When the player joins the server we need to restore the NetworkedInt's
 function PLUGIN:PlayerInitialSpawn( ply )
   Scoreboard.PlayerSpawn( ply )
+end
+
+if CLIENT then
+  -- Kick player
+  Scoreboard.kick = function (ply)
+    if ply:IsValid() then 
+      LocalPlayer():ConCommand( "exsto kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )     
+    end
+  end
+
+  -- Permanent ban player
+  Scoreboard.pBan = function(ply) 
+    if ply:IsValid() then 
+      LocalPlayer():ConCommand( "exsto ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" )   
+    end
+  end
+
+  -- Ban player
+  Scoreboard.ban = function(ply) 
+    if ply:IsValid() then
+      LocalPlayer():ConCommand( "exsto ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )    
+    end
+  end
+
+  -- Get player's Team Name
+  Scoreboard.getGroup = function (ply)
+    return exsto.Ranks[ply:GetRank()].Name  
+  end
+
+  -- Get player's Played time
+  Scoreboard.getPlayerTime = function (ply)
+    -- Get Time
+    return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
+  end
+elseif SERVER then
+  Scoreboard.SendColor = function (ply)   
+    tColor = team.GetColor( ply:Team())     
+    
+    net.Start("SUIScoreboardPlayerColor")
+    net.WriteTable(tColor)
+    net.Send(ply)
+  end
 end
 
 PLUGIN:Register()

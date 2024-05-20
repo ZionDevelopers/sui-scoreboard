@@ -12,85 +12,9 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2023-06-06 8:00 PM(UTC -03:00)
+Version 2.7 - 2023-06-06 8:00 PM(UTC -03:00)
 
 ]]--
-
--- Kick player
-Scoreboard.kick = function (ply)
-  if ply:IsValid() then 
-    if exsto ~= nil then
-      LocalPlayer():ConCommand( "exsto kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" ) 
-    elseif ulx ~= nil then
-      LocalPlayer():ConCommand( "ulx kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )
-    elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "ev kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )  
-    elseif maestro ~= nil then
-      LocalPlayer():ConCommand( "ms kick \"$" .. ply:SteamID() .. "\" \"Kicked By Administrator\"" )
-    elseif Mercury~=nil then 
-      LocalPlayer():ConCommand( "hg kick \"" .. ply:SteamID() .. "\" \"Kicked By Administrator\"" )
-    end
-  end
-end
-
--- Permanent ban player
-Scoreboard.pBan = function(ply) 
-  if ply:IsValid() then 
-    if exsto ~= nil then
-      LocalPlayer():ConCommand( "exsto ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" )
-    elseif ulx ~= nil then
-     LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" ) 
-    elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 0 \"Kicked By Administrator\"" )  
-    elseif maestro ~= nil then
-      LocalPlayer():ConCommand( "ms ban \"$" .. ply:SteamID() .. "\" 0 \"Banned permanently by Administrator\"" )
-    elseif Mercury ~=nil then 
-      LocalPlayer():ConCommand( "hg ban \"" .. ply:SteamID() .. "\" 0 \"Quick ban via scoreboard\"" )
-    end
-  end
-end
-
--- Ban player
-Scoreboard.ban = function(ply) 
-  if ply:IsValid() then
-    if exsto ~= nil then
-      LocalPlayer():ConCommand( "exsto ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )
-    elseif ulx ~= nil then
-      LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )    
-    elseif evolve ~= nil then
-      LocalPlayer():ConCommand( "ev ban \"".. ply:Nick().. "\" 60 \"Kicked By Administrator\"" )  
-    elseif maestro ~= nil then
-      LocalPlayer():ConCommand( "ms ban \"$" .. ply:SteamID() .. "\" 1h \"Banned permanently by Administrator\"" )
-    end
-  end
-end
-
--- Get XGUI Team Name by group
-Scoreboard.getXGUITeamName = function (check_group)
-  for _, team in ipairs( ulx.teams ) do
-    for _, group in ipairs( team.groups ) do
-      if group == check_group then
-        return team.name
-      end
-    end
-  end
-  return check_group
-end
-
--- Get player's Team Name
-Scoreboard.getGroup = function (ply)
-  if exsto ~= nil then
-    return exsto.Ranks[ply:GetRank()].Name
-  elseif ulx ~= nil then
-    return Scoreboard.getXGUITeamName(ply:GetUserGroup())
-  elseif evolve ~= nil then
-    return evolve.ranks[ ply:EV_GetRank() ].Title
-  elseif maestro ~= nil then
-    return maestro.userrank(ply)
-  elseif Mercury ~= nil then
-    return team.GetName(ply:Team())
-  end  
-end
 
 -- Create Scoreboard VGUI
 Scoreboard.CreateVGUI = function()
@@ -146,24 +70,6 @@ Scoreboard.formatTime = function (time)
   
   return string.format( str.."%02ih %02im %02is", h, m, s )
 end 
-
--- Get player's Played time
-Scoreboard.getPlayerTime = function (ply)
-  -- Check if ULX and uTime is Installed
-  if ulx ~= nil and ply:GetNWInt( "TotalUTime", -1 ) ~= -1 then
-    -- Get player's played time
-    return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
-  elseif evolve ~= nil then
-    return evolve:Time() - ply:GetNWInt( "EV_JoinTime" ) + ply:GetNWInt( "EV_PlayTime" )
-  elseif maestro_promote then
-    return CurTime() - ply:GetNWInt("maestro-promote", CurTime())
-  elseif Mercury~=nil then
-    return ply:GetNWInt("ranktime", 0)
-  else
-    -- Get Time
-    return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
-  end
-end
 
 -- Get Local Player Color
 Scoreboard.netGetPlayerColor = function(ply)

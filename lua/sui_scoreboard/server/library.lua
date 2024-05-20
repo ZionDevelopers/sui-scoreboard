@@ -12,27 +12,11 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2024-05-19 10:24 PM (UTC -03:00)
+Version 2.7 - 2024-05-19 10:24 PM (UTC -03:00)
 
 ]]--
 
 util.AddNetworkString( "SUIScoreboardPlayerConnecting" )
-
-Scoreboard.SendColor = function (ply)
-  if evolve then
-    tColor = evolve.ranks[ ply:EV_GetRank() ].Color
-  elseif maestro then
-    tColor = maestro.rankcolor(maestro.userrank(ply)) or team.GetColor(ply:Team())
-  elseif Mercury then
-    tColor = Mercury.Ranks.RankTable[ply:GetNWString("UserRank")].color
-  else
-    tColor = team.GetColor( ply:Team())   
-  end
-  
-  net.Start("SUIScoreboardPlayerColor")
-  net.WriteTable(tColor)
-  net.Send(ply)
-end
 
 --- When the player joins the server we need to restore the NetworkedInt's
 Scoreboard.PlayerSpawn = function ( ply )

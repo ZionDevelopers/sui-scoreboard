@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2024-05-19 11:25 AM (UTC -03:00)
+Version 2.7 - 2024-05-19 11:25 AM (UTC -03:00)
 
 ]]--
 

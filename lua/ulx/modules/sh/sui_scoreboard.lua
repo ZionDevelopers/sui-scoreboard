@@ -12,14 +12,71 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2023-06-06 8:00 PM(UTC -03:00)
+Version 2.7 - 2023-06-06 8:00 PM(UTC -03:00)
 
 ]]--
 
 if SERVER then
   AddCSLuaFile()
   hook.Add("PlayerInitialSpawn", "SUISCOREBOARD-Spawn", Scoreboard.PlayerSpawn)
+  Scoreboard.SendColor = function (ply)   
+    tColor = team.GetColor( ply:Team())   
+
+    net.Start("SUIScoreboardPlayerColor")
+    net.WriteTable(tColor)
+    net.Send(ply)
+  end
 elseif CLIENT then
   hook.Add("ScoreboardShow","SUISCOREBOARD-Show", Scoreboard.Show)
   hook.Add("ScoreboardHide", "SUISCOREBOARD-Hide", Scoreboard.Hide)
+  -- Kick player
+  Scoreboard.kick = function (ply)
+    if ply:IsValid() then      
+      LocalPlayer():ConCommand( "ulx kick \"".. ply:Nick().. "\" \"Kicked By Administrator\"" )    
+    end
+  end
+
+  -- Permanent ban player
+  Scoreboard.pBan = function(ply) 
+    if ply:IsValid() then 
+      LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 0 \" Banned permanently by Administrator\"" ) 
+    end
+  end
+
+  -- Ban player
+  Scoreboard.ban = function(ply) 
+    if ply:IsValid() then
+      LocalPlayer():ConCommand( "ulx ban \"".. ply:Nick().. "\" 60 \" Banned for 1 hour by Administrator\"" )    
+    end
+  end
+
+  -- Get XGUI Team Name by group
+  Scoreboard.getXGUITeamName = function (check_group)
+    for _, team in ipairs( ulx.teams ) do
+      for _, group in ipairs( team.groups ) do
+        if group == check_group then
+          return team.name
+        end
+      end
+    end
+    return check_group
+  end
+
+  -- Get player's Team Name
+  Scoreboard.getGroup = function (ply)
+    return Scoreboard.getXGUITeamName(ply:GetUserGroup())    
+  end
+
+  -- Get player's Played time
+  Scoreboard.getPlayerTime = function (ply)
+    -- Check if ULX and uTime is Installed
+    if ply:GetNWInt( "TotalUTime", -1 ) ~= -1 then
+      -- Get player's played time
+      return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
+    else
+      -- Get Time
+      return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
+    end
+  end
+
 end

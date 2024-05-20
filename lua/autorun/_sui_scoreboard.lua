@@ -12,14 +12,14 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2024-05-19 10:24 PM (UTC -03:00)
+Version 2.7 - 2024-05-20 12:17 PM (UTC -03:00)
 
 ]]--
 
 -- Setup Class
 Scoreboard = {}
 -- Scoreboard version
-Scoreboard.version = "2.6.9"
+Scoreboard.version = "2.7.0"
 
 --Setup Loading Log Formatation
 function loadingLog (text)
@@ -41,7 +41,7 @@ Msg( "\n/====================================\\\n")
 Msg( "||           SUI Scoreboard         ||\n" )
 Msg( "||----------------------------------||\n" )
 loadingLog("Version " .. Scoreboard.version)
-loadingLog("Updated on 2024-05-19 10:24 PM")
+loadingLog("Updated on 2024-05-20 12:17 PM")
 Msg( "\\====================================/\n\n" )
 
 if SERVER then
