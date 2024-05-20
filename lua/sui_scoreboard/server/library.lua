@@ -12,7 +12,7 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.6 - 2024-01-18 9:00 PM (UTC -03:00)
+Version 2.6 - 2024-05-19 10:24 PM (UTC -03:00)
 
 ]]--
 
@@ -23,6 +23,8 @@ Scoreboard.SendColor = function (ply)
     tColor = evolve.ranks[ ply:EV_GetRank() ].Color
   elseif maestro then
     tColor = maestro.rankcolor(maestro.userrank(ply)) or team.GetColor(ply:Team())
+  elseif Mercury then
+    tColor = Mercury.Ranks.RankTable[ply:GetNWString("UserRank")].color
   else
     tColor = team.GetColor( ply:Team())   
   end
