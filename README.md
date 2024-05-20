@@ -13,8 +13,9 @@ This is a game addon for [Garry's Mod][] servers, NOT FOR SINGLEPLAYER!
 * Lots of bugs fixed and lots of improvements since SUI Scoreboard v2.
 
 ### Compatibility
-[uTime][uTime] is required if you use ULX and want to keep the hour tracking after restart.
+[uTime][uTime] is required if you use ULX and want to keep the hour tracking after restart. <br />
 [Evolve][Evolve]: To work with Evolve, You need to delete the file garrysmod/addons/evolve/lua/ev_plugins/sh_scoreboard.lua !
+
 ### Setup
 
 Just download this addon by clicking on Download ZIP and extract the addon in ````Steam\SteamApps\common\GarrysMod\garrysmod\addons\```` as usual.
