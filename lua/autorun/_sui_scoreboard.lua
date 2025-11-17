@@ -12,14 +12,14 @@ Copyright only on the code that I wrote, my implementation and fixes and etc, Th
 ----------------------------------------------------------------------------------------------------------------------------
 
 $Id$
-Version 2.7 - 2024-05-20 12:17 PM (UTC -03:00)
+Version 2.7.1 - 2025-11-17 08:57 PM (UTC -03:00)
 
 ]]--
 
 -- Setup Class
 Scoreboard = {}
 -- Scoreboard version
-Scoreboard.version = "2.7.0"
+Scoreboard.version = "2.7.1"
 
 --Setup Loading Log Formatation
 function loadingLog (text)
