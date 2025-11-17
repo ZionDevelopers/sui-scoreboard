@@ -73,6 +73,8 @@ elseif CLIENT then
     if ply:GetNWInt( "TotalUTime", -1 ) ~= -1 then
       -- Get player's played time
       return math.floor((ply:GetUTime() + CurTime() - ply:GetUTimeStart()))
+    elseif CFCTime ~= nil then
+      return math.floor(ply:GetNW2Float("CFC_Time_TotalTime", 0))
     else
       -- Get Time
       return ply:GetNWInt( "Time_Fixed" ) + (CurTime() - ply:GetNWInt( "Time_Join" ))
