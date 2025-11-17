@@ -113,6 +113,12 @@ function PANEL:UpdatePlayerData()
 	self.lblName:SetText( self.Player:Nick() )
 	self.lblTeam:SetText( Scoreboard.getGroup( self.Player ) )
 
+	if self.Player:GetNWBool( "_Kyle_Buildmode" ) then
+		self.lblMode:SetText( "Build" )
+	else
+		self.lblMode:SetText( "PvP" )
+	end
+
 	self.lblHours:SetText( Scoreboard.formatTime( Scoreboard.getPlayerTime( self.Player ) ))
 	self.lblHealth:SetText( self.Player:Health() )
 	self.lblFrags:SetText( self.Player:Frags() )
@@ -277,6 +283,7 @@ function PANEL:Init()
 
 	self.lblName = vgui.Create( "DLabel", self )
 	self.lblTeam = vgui.Create( "DLabel", self )
+	self.lblMode = vgui.Create( "DLabel", self )
 	self.lblHours = vgui.Create( "DLabel", self )
 	self.lblHealth = vgui.Create( "DLabel", self )
 	self.lblFrags = vgui.Create( "DLabel", self )
@@ -293,6 +300,7 @@ function PANEL:Init()
 	-- If you don't do this it'll block your clicks
 	self.lblName:SetMouseInputEnabled( false )
 	self.lblTeam:SetMouseInputEnabled( false )
+	self.lblMode:SetMouseInputEnabled( false )
 	self.lblHours:SetMouseInputEnabled( false )
 	self.lblHealth:SetMouseInputEnabled( false )
 	self.lblFrags:SetMouseInputEnabled( false )
@@ -308,6 +316,7 @@ end
 function PANEL:ApplySchemeSettings()
 	self.lblName:SetFont( "suiscoreboardplayername" )
 	self.lblTeam:SetFont( "suiscoreboardplayername"  )
+	self.lblMode:SetFont( "suiscoreboardplayername"  )
 	self.lblHours:SetFont( "suiscoreboardplayername"  )
 	self.lblHealth:SetFont( "suiscoreboardplayername"  )
 	self.lblFrags:SetFont( "suiscoreboardplayername"  )
@@ -320,6 +329,7 @@ function PANEL:ApplySchemeSettings()
 
 	self.lblName:SetColor( namecolor )
 	self.lblTeam:SetColor( namecolor )
+	self.lblMode:SetColor( namecolor )
 	self.lblHours:SetColor( namecolor )
 	self.lblHealth:SetColor( namecolor )
 	self.lblFrags:SetColor( namecolor )
@@ -330,6 +340,7 @@ function PANEL:ApplySchemeSettings()
 
 	self.lblName:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblTeam:SetFGColor( Color( 0, 0, 0, 255 ) )
+	self.lblMode:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblHours:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblHealth:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblFrags:SetFGColor( Color( 0, 0, 0, 255 ) )
@@ -382,6 +393,7 @@ function PANEL:PerformLayout()
 	self.lblName:SizeToContents()
 	self.lblName:SetPos( 60, 3 )
 	self.lblTeam:SizeToContents()
+	self.lblMode:SizeToContents()
 	self.lblMute:SetSize(32,32)
 	self.lblHours:SizeToContents()
 
@@ -400,6 +412,7 @@ function PANEL:PerformLayout()
 	self.lblHealth:SetPos( self:GetWide() - COLUMN_SIZE * 6.4, 0 )
 	self.lblHours:SetPos( self:GetWide() - COLUMN_SIZE * 10.3, 0 )
 	self.lblTeam:SetPos( self:GetWide() - COLUMN_SIZE * 16.1, 3 )
+	self.lblMode:SetPos( self:GetWide() - COLUMN_SIZE * 11.5, 3 )
 
 	if self.Open or self.Size ~= self.TargetSize then
 		self.infoCard:SetVisible( true )

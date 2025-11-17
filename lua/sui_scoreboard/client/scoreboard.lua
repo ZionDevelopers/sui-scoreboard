@@ -86,6 +86,9 @@ function PANEL:Init()
 	self.lblTeam = vgui.Create( "DLabel", self )
 	self.lblTeam:SetText( "Rank" )
 	
+	self.lblMode = vgui.Create( "DLabel", self )
+	self.lblMode:SetText( "Mode" )
+	
 	self.lblMute = vgui.Create( "DImageButton", self)
 	
 	self.connectingPlayers = {}
@@ -230,6 +233,7 @@ function PANEL:PerformLayout()
 	self.lblHealth:SizeToContents()
 	self.lblHours:SizeToContents()
 	self.lblTeam:SizeToContents()
+	self.lblMode:SizeToContents()
 	
 	local COLUMN_SIZE = 45
 	
@@ -240,6 +244,7 @@ function PANEL:PerformLayout()
 	self.lblHealth:SetPos( self:GetWide() - COLUMN_SIZE*6.4 - self.lblKills:GetWide()/2, self.PlayerFrame.y - self.lblPing:GetTall() - 3  )
 	self.lblHours:SetPos( self:GetWide() - COLUMN_SIZE*10.2 - self.lblKills:GetWide()/2, self.PlayerFrame.y - self.lblPing:GetTall() - 3  )
 	self.lblTeam:SetPos( self:GetWide() - COLUMN_SIZE*16 - self.lblKills:GetWide()/2, self.PlayerFrame.y - self.lblPing:GetTall() - 3  )
+	self.lblMode:SetPos( self:GetWide() - COLUMN_SIZE*11.5 - self.lblKills:GetWide()/2, self.PlayerFrame.y - self.lblPing:GetTall() - 3  )
 end
 
 --- ApplySchemeSettings
@@ -265,6 +270,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblKills:SetFont( "DefaultSmall" )
 	self.lblDeaths:SetFont( "DefaultSmall" )
 	self.lblTeam:SetFont( "DefaultSmall" )
+	self.lblMode:SetFont( "DefaultSmall" )
 	self.lblHealth:SetFont( "DefaultSmall" )
 	self.lblRatio:SetFont( "DefaultSmall" )
 	self.lblHours:SetFont( "DefaultSmall" )
@@ -273,6 +279,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblKills:SetColor( Color( 0, 0, 0, 255 ) )
 	self.lblDeaths:SetColor( Color( 0, 0, 0, 255 ) )
 	self.lblTeam:SetColor( Color( 0, 0, 0, 255 ) )
+	self.lblMode:SetColor( Color( 0, 0, 0, 255 ) )
 	self.lblHealth:SetColor( Color( 0, 0, 0, 255 ) )
 	self.lblRatio:SetColor( Color( 0, 0, 0, 255 ) )
 	self.lblHours:SetColor( Color( 0, 0, 0, 255 ) )
@@ -281,6 +288,7 @@ function PANEL:ApplySchemeSettings()
 	self.lblKills:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblDeaths:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblTeam:SetFGColor( Color( 0, 0, 0, 255 ) )
+	self.lblMode:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblHealth:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblRatio:SetFGColor( Color( 0, 0, 0, 255 ) )
 	self.lblHours:SetFGColor( Color( 0, 0, 0, 255 ) )
