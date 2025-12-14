@@ -20,6 +20,7 @@ Version 2.7.1 - 2025-11-17 08:57 PM (UTC -03:00)
 Scoreboard = {}
 -- Scoreboard version
 Scoreboard.version = "2.7.1"
+Scoreboard.versionUpdated = "2025-11-17 08:57 PM"
 
 --Setup Loading Log Formatation
 function loadingLog (text)
@@ -41,7 +42,7 @@ Msg( "\n/====================================\\\n")
 Msg( "||           SUI Scoreboard         ||\n" )
 Msg( "||----------------------------------||\n" )
 loadingLog("Version " .. Scoreboard.version)
-loadingLog("Updated on 2024-05-20 12:17 PM")
+loadingLog("Updated on " .. Scoreboard.versionUpdated)
 Msg( "\\====================================/\n\n" )
 
 if SERVER then
