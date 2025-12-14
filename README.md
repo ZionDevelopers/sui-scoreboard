@@ -14,6 +14,7 @@ This is a game addon for [Garry's Mod][] servers, NOT FOR SINGLEPLAYER!
 
 ### Compatibility
 [uTime][uTime] is required if you use ULX and want to keep the hour tracking after restart. <br />
+[CFCTime][CFCTime] is compatible for times. <br />
 [Evolve][Evolve]: To this addon to work, You need to delete the file garrysmod/addons/evolve/lua/ev_plugins/sh_scoreboard.lua !
 
 ### Setup
@@ -41,6 +42,7 @@ To view a copy of this license, visit [Common Creative's Website][License].
 [Exsto]: <https://github.com/prefanatic/exsto>
 [Evolve]: <https://github.com/Xandaros/evolve>
 [License]: <https://creativecommons.org/licenses/by-nc-sa/4.0/>
+[CFCTime]: <https://steamcommunity.com/sharedfiles/filedetails/?id=3516506967>
 [uTime]: <https://github.com/TeamUlysses/utime>
 [Maestro]: <https://github.com/ottworks/maestro>
 [Mercury]: <https://github.com/TheFreezebug/Mercury>
